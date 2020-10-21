@@ -1,9 +1,9 @@
 twilio:
-  accountId: AC0bfca3da39e9d00b8a3e03991af00000
-  accountToken: e3511f257424cea8dadfddcd42800000
-  localDomain:  signal.domain.com
+  accountId: ACcbedb2b43159d11693306f590cb2f3ba
+  accountToken: be66f5bbd8ead654e193b97fbf317786
+  localDomain:  signal.taolu.biz
   numbers:
-    - "+12565769630" # Change this to your number from Twilio
+    - "+17243993889" # Change this to your number from Twilio
 
 backupService:
   userAuthenticationTokenSharedSecret: 112233445566  # Generate it with `head -c 16 /dev/urandom | hexdump -ve '1/1 "%.2x"'`
