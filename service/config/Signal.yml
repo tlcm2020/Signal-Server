@@ -36,9 +36,9 @@ directory:
     userAuthenticationTokenSharedSecret: 33445566  # Generate it with `head -c 16 /dev/urandom | hexdump -ve '1/1 "%.2x"'`
     userAuthenticationTokenUserIdSecret: 22117788  # Generate it with `head -c 16 /dev/urandom | hexdump -ve '1/1 "%.2x"'`
   sqs:
-    accessKey:    AKIAQ565H442HJM00000 # Change this to your AWS IAM Access Key
-    accessSecret: cvjr4YVENZW/samH3G33ntliGVKM3oVYJh300000 # Change this to your AWS IAM Secret
-    queueUrl:     https://sqs.eu-west-3.amazonaws.com/044351627060/signal.fifo # Change this to your AWS SQS (FIFO) URL
+    accessKey: AKIAJ3LBHN7HYOAIYANA # Change this to your AWS IAM Access Key
+    accessSecret: nCOTRRs3AWyGXFDgwLqNLvyubZYS3/WT1q6+r3dn # Change this to your AWS IAM Secret
+    queueUrl:     https://sqs.ap-east-1.amazonaws.com/578006120240/sig.fifo # Change this to your AWS SQS (FIFO) URL
   server: # You can change the certificate with your own certificate
     replicationUrl: http://127.0.0.1:9090 # CDS replication endpoint base url
     replicationPassword: mypassword # CDS replication endpoint password
@@ -84,23 +84,23 @@ messageCache: # redis server for message store cache
       - redis://172.16.4.196:6379/messageCacheReplica # change to your redis server
 
 awsAttachments: # aws s3 configuration
-  accessKey: AKIAQ565H442DES00000 # Change this to your AWS IAM Access Key
-  accessSecret: YmpZCxz2lzgemvmLTa2uC38IG2ADBFztm5l00000 # Change this to your AWS IAM Secret
-  bucket: signal-01-attachments # Change this to your bucket's name
-  region: eu-west-3 # Change this to your bucket's region
+  accessKey: AKIAJ3LBHN7HYOAIYANA # Change this to your AWS IAM Access Key
+  accessSecret: nCOTRRs3AWyGXFDgwLqNLvyubZYS3/WT1q6+r3dn # Change this to your AWS IAM Secret
+  bucket: f-signal # Change this to your bucket's name
+  region: ap-east-1 # Change this to your bucket's region
 
 cdn: # aws cdn configuration
-  accessKey: AKIAQ565H242DES00000 # Change this to your AWS IAM Access Key
-  accessSecret: YmpZCxf2lzgembmLTa2uC38IG2ADBFztm5l00000 # Change this to your AWS IAM Secret
-  bucket: signal-01-attachments # Change this to your bucket's name
-  region: eu-west-3 # Change this to your bucket's region
+  accessKey: AKIAJ3LBHN7HYOAIYANA # Change this to your AWS IAM Access Key
+  accessSecret: nCOTRRs3AWyGXFDgwLqNLvyubZYS3/WT1q6+r3dn # Change this to your AWS IAM Secret
+  bucket: f-signal # Change this to your bucket's name
+  region: ap-east-1 # Change this to your bucket's region
 
 # openssl genrsa -out private_key_rsa_4096_pkcs1.pem 4096
 # openssl pkcs8 -topk8 -in private_key_rsa_4096_pkcs1.pem -inform pem -out private_key_rsa_4096_pkcs8-exported.pem -outform pem -nocrypt
 #add \n to the certificate: awk 'NF {sub(/\r/, ""); printf "%s\\n",$0;}'  private_key_rsa_4096_pkcs8-exported.pem
 gcpAttachments: # gcp storage configuration
   domain: domain.com
-  email: dummy@dummy.com
+  email: taolucjh@gmail.com
   maxSizeInBytes: 1000000
   pathPrefix: /
   rsaSigningKey: "-----BEGIN PRIVATE KEY-----\n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\ne/Nnz522vAEo/NRpbNfrnLDFmjFnZ+U=\n-----END PRIVATE KEY-----\n"
