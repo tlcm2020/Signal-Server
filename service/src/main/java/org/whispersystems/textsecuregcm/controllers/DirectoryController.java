@@ -21,6 +21,7 @@ import com.codahale.metrics.Meter;
 import com.codahale.metrics.MetricRegistry;
 import com.codahale.metrics.SharedMetricRegistries;
 import com.codahale.metrics.annotation.Timed;
+import com.google.gson.Gson;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.whispersystems.textsecuregcm.auth.ExternalServiceCredentialGenerator;
@@ -109,6 +110,7 @@ public class DirectoryController {
   @Path("/auth")
   @Produces(MediaType.APPLICATION_JSON)
   public Response getAuthToken(@Auth Account account) {
+    logger.info("----getAuthToken--account={}", new Gson().toJson(account));
     return Response.ok().entity(directoryServiceTokenGenerator.generateFor(account.getNumber())).build();
   }
 
@@ -149,6 +151,7 @@ public class DirectoryController {
   public Response getTokenPresence(@Auth Account account, @PathParam("token") String token)
       throws RateLimitExceededException
   {
+    logger.info("----getTokenPresence--account={} token={}", new Gson().toJson(account), token);
     rateLimiters.getContactsLimiter().validate(account.getNumber());
 
     try {
@@ -173,6 +176,7 @@ public class DirectoryController {
                                                @Valid ClientContactTokens contacts)
       throws RateLimitExceededException
   {
+    logger.info("----getContactIntersection--account={} forwardedFor={} contacts={}", new Gson().toJson(account), forwardedFor, new Gson().toJson(contacts));
     String requester = Arrays.stream(forwardedFor.split(","))
                              .map(String::trim)
                              .reduce((a, b) -> b)

@@ -43,6 +43,7 @@ public class SmsSender {
     }
 
     twilioSender.deliverSmsVerification(destination, clientType, verificationCode);
+//    twilioSender.deliverSmsVerificationYunpian(destination, clientType, verificationCode);
   }
 
   public void deliverVoxVerification(String destination, String verificationCode, Optional<String> locale) {

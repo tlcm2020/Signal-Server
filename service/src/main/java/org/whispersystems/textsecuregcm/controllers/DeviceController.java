@@ -18,6 +18,7 @@ package org.whispersystems.textsecuregcm.controllers;
 
 import com.codahale.metrics.annotation.Timed;
 import com.google.common.annotations.VisibleForTesting;
+import com.google.gson.Gson;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.whispersystems.textsecuregcm.auth.AuthenticationCredentials;
@@ -92,6 +93,7 @@ public class DeviceController {
   @GET
   @Produces(MediaType.APPLICATION_JSON)
   public DeviceInfoList getDevices(@Auth Account account) {
+    logger.info("----getDevices--account={}", new Gson().toJson(account));
     List<DeviceInfo> devices = new LinkedList<>();
 
     for (Device device : account.getDevices()) {
@@ -109,7 +111,6 @@ public class DeviceController {
     if (account.getAuthenticatedDevice().get().getId() != Device.MASTER_ID) {
       throw new WebApplicationException(Response.Status.UNAUTHORIZED);
     }
-
     account.removeDevice(deviceId);
     accounts.update(account);
 

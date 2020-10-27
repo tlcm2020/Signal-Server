@@ -2,6 +2,7 @@ package org.whispersystems.textsecuregcm.controllers;
 
 import com.amazonaws.services.s3.AmazonS3;
 import com.codahale.metrics.annotation.Timed;
+import com.google.gson.Gson;
 import org.apache.commons.codec.DecoderException;
 import org.apache.commons.codec.binary.Base64;
 import org.apache.commons.codec.binary.Hex;
@@ -100,6 +101,7 @@ public class ProfileController {
   @Produces(MediaType.APPLICATION_JSON)
   @Consumes(MediaType.APPLICATION_JSON)
   public Response setProfile(@Auth Account account, @Valid CreateProfileRequest request) {
+    logger.info("----setProfile--account={} request={}", new Gson().toJson(account), new Gson().toJson(request));
     if (!isZkEnabled) throw new WebApplicationException(Response.Status.NOT_FOUND);
 
     Optional<VersionedProfile>              currentProfile = profilesManager.get(account.getUuid(), request.getVersion());
