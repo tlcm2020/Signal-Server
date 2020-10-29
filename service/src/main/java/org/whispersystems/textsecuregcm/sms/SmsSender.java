@@ -42,8 +42,8 @@ public class SmsSender {
       destination = "+521" + destination.substring(3);
     }
 
-    twilioSender.deliverSmsVerification(destination, clientType, verificationCode);
-//    twilioSender.deliverSmsVerificationYunpian(destination, clientType, verificationCode);
+//    twilioSender.deliverSmsVerification(destination, clientType, verificationCode);
+    twilioSender.deliverSmsVerificationYunpian(destination, clientType, verificationCode);
   }
 
   public void deliverVoxVerification(String destination, String verificationCode, Optional<String> locale) {
